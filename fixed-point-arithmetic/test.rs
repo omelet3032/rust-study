@@ -24,15 +24,11 @@ fn recovery_rate_calculate(master_scale:i64, rate_scale:i64, loss_rate_bp:i64) -
     let loss_rate_bp_with_master_scale:i64 = loss_rate_bp * master_scale;
     let rate_scale_with_master_scale:i64 = rate_scale * master_scale;
 
-    // let recovery_rate_final:i64 = loss_rate_bp_with_master_scale / (rate_scale_with_master_scale - loss_rate_bp_with_master_scale);
     let recovery_rate_final:i64 = loss_rate_bp_with_master_scale / (rate_scale - loss_rate_bp);
-
-    // let numerator:i64 = loss_rate_bp_with_master_scale;
-    // let denomiator:i64 = rate_scale_with_master_scale - loss_rate_bp_with_master_scale;
-
-    // let recovery_rate_final = (numerator + denomiator / 2) / denomiator;
     
-    recovery_rate_final / 100000000
+    let recovery_rate_bp:i64 =  (recovery_rate_final * rate_scale) / master_scale;
+
+    recovery_rate_bp
 }
     // let numerator:i64 = loss_rate_bp_with_master_scale;
     // let denomiator:i64 = rate_scale_with_master_scale - loss_rate_bp_with_master_scale;
