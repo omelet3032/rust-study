@@ -4,19 +4,19 @@ fn main() {
     
     let country:Country = select_country();
 
-    let price:i32 = enter_stock_price(country);
+    let price:f64 = enter_stock_price(&country);
 
     print_result(price, country);
 }
 
-fn print_result(price:i32, country:Country) {
+fn print_result(price:f64, country:Country) {
     println!("print_result : {}, {}", price, country);
 
 }
 
-fn enter_stock_price(country:Country) -> i32 {
+fn enter_stock_price(country:&Country) -> f64 {
     println!("enterstockprice에 입력되나? : {}", country);
-    return 100
+    return 1.0; 
 }
 
 fn select_country() -> Country {
@@ -28,7 +28,6 @@ impl fmt::Display for Country {
     fn fmt(&self, f:&mut fmt::Formatter) -> fmt::Result {
         match self {
             Country::KR => write!(f, "korea"),
-            Country::US => write!(f, "usa"),
         }
     }
 }
@@ -44,9 +43,8 @@ impl fmt::Display for Message {
 
 enum Country {
     KR,
-    US,
 }
 
 enum Message {
-    ResultCountry(i32, Country),
+    ResultCountry(f64, Country),
 }
